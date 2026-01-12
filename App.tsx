@@ -17,8 +17,8 @@ interface ErrorBoundaryState {
   hasError: boolean;
 }
 
-// Fix: Explicitly use Component and property initializer for state to resolve TS access errors for props and state
-class ErrorBoundary extends Component<ErrorBoundaryProps, ErrorBoundaryState> {
+// Use React.Component explicitly to ensure TypeScript correctly identifies inherited members like this.props
+class ErrorBoundary extends React.Component<ErrorBoundaryProps, ErrorBoundaryState> {
   public state: ErrorBoundaryState = { hasError: false };
 
   static getDerivedStateFromError(_error: any): ErrorBoundaryState {
@@ -49,8 +49,8 @@ function App() {
   const [isAdminOpen, setIsAdminOpen] = useState(false);
   const [isMusicPlaying, setIsMusicPlaying] = useState(false);
 
-  // 使用 v23 強制讀取最新的英文檔名配置
-  const VERSION_KEY = 'chen_music_v23_english_assets';
+  // 提升到 v24_final_path_fix 強制清除所有舊有的中文路徑快取
+  const VERSION_KEY = 'chen_music_v24_final_path_fix';
 
   useEffect(() => {
     try {
@@ -61,17 +61,28 @@ function App() {
         const parsed = JSON.parse(savedImages);
         if (parsed && Array.isArray(parsed) && parsed.length > 0) {
            setImages(parsed);
+        } else {
+           setImages(INITIAL_CAROUSEL);
         }
+      } else {
+         // 如果沒有存過 v24 的資料，強制載入初始設定
+         setImages(INITIAL_CAROUSEL);
       }
       
       if (savedTracks) {
         const parsed = JSON.parse(savedTracks);
         if (parsed && Array.isArray(parsed) && parsed.length > 0) {
            setTracks(parsed);
+        } else {
+           setTracks(INITIAL_TRACKS);
         }
+      } else {
+         setTracks(INITIAL_TRACKS);
       }
     } catch (e) {
       console.error("LocalStorage load error:", e);
+      setImages(INITIAL_CAROUSEL);
+      setTracks(INITIAL_TRACKS);
     }
   }, []);
 

@@ -65,13 +65,12 @@ export const Carousel: React.FC<CarouselProps> = ({ images }) => {
                 src={image.url}
                 alt={image.title}
                 onError={(e) => {
-                  console.error(`Image load failed: ${image.url}`);
-                  e.currentTarget.style.display = 'none';
+                  console.error(`Image failed to load at path: ${image.url}`);
+                  // 暫時移除隱藏邏輯，若路徑錯了會顯示破損圖示方便確認
                 }}
-                className="w-full h-full object-cover transition-all duration-[4s] ease-out scale-105 group-hover:scale-110 opacity-80 group-hover:opacity-100"
+                className="w-full h-full object-cover transition-all duration-[4s] ease-out scale-105 group-hover:scale-110 opacity-100 group-hover:opacity-100"
               />
-              {/* 減輕漸變層的遮蓋感，讓圖片更明顯 */}
-              <div className="absolute inset-0 bg-gradient-to-b from-black/10 via-transparent to-black/80 opacity-60 group-hover:opacity-30 transition-opacity duration-1000" />
+              <div className="absolute inset-0 bg-gradient-to-b from-black/20 via-transparent to-black/80 opacity-50 group-hover:opacity-20 transition-opacity duration-1000" />
             </div>
 
             <div className="absolute inset-0 p-10 md:p-14 flex flex-col justify-end z-20">

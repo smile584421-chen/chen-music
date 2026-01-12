@@ -1,16 +1,17 @@
 
 import { MusicTrack, CarouselImage } from './types';
 
-// 使用根目錄路徑
-const BASE = '';
+// 使用相對路徑 ./ 確保在靜態部署中能正確定位根目錄檔案
+const BASE = './';
+const CACHE_BUSTER = '?v=24';
 
 export const INITIAL_CAROUSEL: CarouselImage[] = [
-  { id: 'img_1', url: `${BASE}chen-p1.jpg`, title: '月光', subtitle: 'Moonlight' },
-  { id: 'img_2', url: `${BASE}chen-p5.jpg`, title: '在旋律中與自己相遇', subtitle: 'Meeting Yourself in Melody' },
-  { id: 'img_3', url: `${BASE}chen-p3.jpg`, title: '風 地與水的協奏', subtitle: 'Concerto of Wind, Earth & Water' },
-  { id: 'img_4', url: `${BASE}chen-p6.jpg`, title: '風與石系列', subtitle: 'Wind & Stone Series' },
-  { id: 'img_5', url: `${BASE}chen-p2.jpg`, title: '溪語情書', subtitle: 'Love Letters from the Brook' },
-  { id: 'img_6', url: `${BASE}chen-p4.jpg`, title: '溫暖療癒系', subtitle: 'Warmth & Healing' },
+  { id: 'img_1', url: `${BASE}chen-p1.jpg${CACHE_BUSTER}`, title: '月光', subtitle: 'Moonlight' },
+  { id: 'img_2', url: `${BASE}chen-p5.jpg${CACHE_BUSTER}`, title: '在旋律中與自己相遇', subtitle: 'Meeting Yourself in Melody' },
+  { id: 'img_3', url: `${BASE}chen-p3.jpg${CACHE_BUSTER}`, title: '風 地與水的協奏', subtitle: 'Concerto of Wind, Earth & Water' },
+  { id: 'img_4', url: `${BASE}chen-p6.jpg${CACHE_BUSTER}`, title: '風與石系列', subtitle: 'Wind & Stone Series' },
+  { id: 'img_5', url: `${BASE}chen-p2.jpg${CACHE_BUSTER}`, title: '溪語情書', subtitle: 'Love Letters from the Brook' },
+  { id: 'img_6', url: `${BASE}chen-p4.jpg${CACHE_BUSTER}`, title: '溫暖療癒系', subtitle: 'Warmth & Healing' },
 ];
 
 export const CATEGORIES = ['禎心推薦', '冥想', '溫暖', '明亮', '放鬆'];
