@@ -17,8 +17,8 @@ interface ErrorBoundaryState {
   hasError: boolean;
 }
 
-// Use React.Component explicitly to ensure TypeScript correctly identifies inherited members like this.props
-class ErrorBoundary extends React.Component<ErrorBoundaryProps, ErrorBoundaryState> {
+// Fix: Use Component directly to ensure 'props' is inherited and typed correctly
+class ErrorBoundary extends Component<ErrorBoundaryProps, ErrorBoundaryState> {
   public state: ErrorBoundaryState = { hasError: false };
 
   static getDerivedStateFromError(_error: any): ErrorBoundaryState {
@@ -49,8 +49,8 @@ function App() {
   const [isAdminOpen, setIsAdminOpen] = useState(false);
   const [isMusicPlaying, setIsMusicPlaying] = useState(false);
 
-  // 提升到 v24_final_path_fix 強制清除所有舊有的中文路徑快取
-  const VERSION_KEY = 'chen_music_v24_final_path_fix';
+  // 提升到 v25_absolute_path_fix 強制刷新所有快取
+  const VERSION_KEY = 'chen_music_v25_absolute_path_fix';
 
   useEffect(() => {
     try {
@@ -65,7 +65,7 @@ function App() {
            setImages(INITIAL_CAROUSEL);
         }
       } else {
-         // 如果沒有存過 v24 的資料，強制載入初始設定
+         // 若版本號不同，強制讀取 INITIAL_CAROUSEL (內含新的 /chen-p1.jpg 等路徑)
          setImages(INITIAL_CAROUSEL);
       }
       

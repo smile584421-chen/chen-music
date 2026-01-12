@@ -1,9 +1,9 @@
 
 import { MusicTrack, CarouselImage } from './types';
 
-// 使用相對路徑 ./ 確保在靜態部署中能正確定位根目錄檔案
-const BASE = './';
-const CACHE_BUSTER = '?v=24';
+// 使用絕對路徑 '/' 確保在 Vercel 根目錄下最穩定的讀取
+const BASE = '/';
+const CACHE_BUSTER = '?v=25';
 
 export const INITIAL_CAROUSEL: CarouselImage[] = [
   { id: 'img_1', url: `${BASE}chen-p1.jpg${CACHE_BUSTER}`, title: '月光', subtitle: 'Moonlight' },
