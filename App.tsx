@@ -1,5 +1,5 @@
 
-import React, { useState, useEffect, ReactNode } from 'react';
+import React, { useState, useEffect, ReactNode, Component } from 'react';
 import { Header } from './components/Header';
 import { Carousel } from './components/Carousel';
 import { MusicPlayer } from './components/MusicPlayer';
@@ -17,12 +17,9 @@ interface ErrorBoundaryState {
   hasError: boolean;
 }
 
-class ErrorBoundary extends React.Component<ErrorBoundaryProps, ErrorBoundaryState> {
-  // Fix: Explicitly defining the constructor and calling super(props) ensures 'this.props' is correctly typed and recognized by the TypeScript compiler.
-  constructor(props: ErrorBoundaryProps) {
-    super(props);
-    this.state = { hasError: false };
-  }
+// Fix: Explicitly use Component and property initializer for state to resolve TS access errors for props and state
+class ErrorBoundary extends Component<ErrorBoundaryProps, ErrorBoundaryState> {
+  public state: ErrorBoundaryState = { hasError: false };
 
   static getDerivedStateFromError(_error: any): ErrorBoundaryState {
     return { hasError: true };
@@ -52,8 +49,8 @@ function App() {
   const [isAdminOpen, setIsAdminOpen] = useState(false);
   const [isMusicPlaying, setIsMusicPlaying] = useState(false);
 
-  // 再次更新金鑰名稱，徹底清除舊緩存
-  const VERSION_KEY = 'chen_music_v22_fix_paths';
+  // 使用 v23 強制讀取最新的英文檔名配置
+  const VERSION_KEY = 'chen_music_v23_english_assets';
 
   useEffect(() => {
     try {
