@@ -1,7 +1,7 @@
 
 import { MusicTrack, CarouselImage } from './types';
 
-// 改為相對路徑，指向與 App 同層級的檔案
+// 使用相對路徑，確保讀取與 App 同目錄的 GitHub 資源
 const BASE = './';
 
 export const INITIAL_CAROUSEL: CarouselImage[] = [
@@ -21,7 +21,7 @@ export const INITIAL_TRACKS: MusicTrack[] = [
     title: '風與石系列4~放手', 
     artist: '最終你成了抓不住的遠方，而我，成了守望你背影的晴朗。', 
     category: '禎心推薦', 
-    url: `${BASE}風與石系列4 放手.mp3`, 
+    url: `${BASE}風與石系列4 放手-1.mp3`, 
     coverUrl: `${BASE}風與石系列.jpg` 
   },
   { 
@@ -37,7 +37,7 @@ export const INITIAL_TRACKS: MusicTrack[] = [
     title: '與自己相遇4', 
     artist: '光影交織，溫暖如昨。', 
     category: '冥想', 
-    url: `${BASE}與自己相遇4.mp3`, 
+    url: `${BASE}在旋律中與自己相遇4.mp3`, 
     coverUrl: `${BASE}在旋律中與自己相遇.jpg` 
   },
   { 
@@ -45,7 +45,7 @@ export const INITIAL_TRACKS: MusicTrack[] = [
     title: '與自己相遇3', 
     artist: '心安了，便是一生瀟灑。', 
     category: '溫暖', 
-    url: `${BASE}與自己相遇3.mp3`, 
+    url: `${BASE}在旋律中與自己相遇3.mp3`, 
     coverUrl: `${BASE}在旋律中與自己相遇.jpg` 
   },
   { 
@@ -66,18 +66,18 @@ export const INITIAL_TRACKS: MusicTrack[] = [
   },
   { 
     id: 't8', 
-    title: '風 地 與水的協奏 1', 
+    title: '風地與水協奏 1', 
     artist: '像風掠過水，滋潤大地。', 
     category: '溫暖', 
-    url: `${BASE}風 地 與水的協奏 1.mp3`, 
+    url: `${BASE}風地與水協奏1.mp3`, 
     coverUrl: `${BASE}風 地與水的協奏.jpg` 
   },
   { 
     id: 't9', 
-    title: '風 地 與水的協奏 3', 
+    title: '風地與水協奏 3', 
     artist: '當旋律蔓延成最好的相遇。', 
     category: '明亮', 
-    url: `${BASE}風 地 與水的協奏 3.mp3`, 
+    url: `${BASE}風地與水協奏3.mp3`, 
     coverUrl: `${BASE}風 地與水的協奏.jpg` 
   },
   { 
