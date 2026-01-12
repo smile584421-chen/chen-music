@@ -1,7 +1,7 @@
 
 import { MusicTrack, CarouselImage } from './types';
 
-// 使用相對路徑，確保讀取與 App 同目錄的 GitHub 資源
+// 使用相對路徑，GitHub Pages/Vercel 會自動從根目錄讀取檔案
 const BASE = './';
 
 export const INITIAL_CAROUSEL: CarouselImage[] = [
@@ -34,7 +34,7 @@ export const INITIAL_TRACKS: MusicTrack[] = [
   },
   { 
     id: 't3', 
-    title: '與自己相遇4', 
+    title: '在旋律中與自己相遇 4', 
     artist: '光影交織，溫暖如昨。', 
     category: '冥想', 
     url: `${BASE}在旋律中與自己相遇4.mp3`, 
@@ -42,7 +42,7 @@ export const INITIAL_TRACKS: MusicTrack[] = [
   },
   { 
     id: 't4', 
-    title: '與自己相遇3', 
+    title: '在旋律中與自己相遇 3', 
     artist: '心安了，便是一生瀟灑。', 
     category: '溫暖', 
     url: `${BASE}在旋律中與自己相遇3.mp3`, 
@@ -50,7 +50,7 @@ export const INITIAL_TRACKS: MusicTrack[] = [
   },
   { 
     id: 't5', 
-    title: '溫暖療癒系1', 
+    title: '溫暖療癒系 1', 
     artist: '所有的流浪，都是為了此刻的停泊。', 
     category: '放鬆', 
     url: `${BASE}溫暖療癒系1.mp3`, 
@@ -58,7 +58,7 @@ export const INITIAL_TRACKS: MusicTrack[] = [
   },
   { 
     id: 't7', 
-    title: '溫暖療癒系5', 
+    title: '溫暖療癒系 5', 
     artist: '在音符裡安放所有憂傷。', 
     category: '冥想', 
     url: `${BASE}溫暖療癒系5.mp3`, 
@@ -82,7 +82,7 @@ export const INITIAL_TRACKS: MusicTrack[] = [
   },
   { 
     id: 't10', 
-    title: '溪語情書5', 
+    title: '溪語情書 5', 
     artist: '順著蜿蜒的旋律而行，前方便是燈火。', 
     category: '放鬆', 
     url: `${BASE}溪語情書5.mp3`, 
@@ -90,7 +90,7 @@ export const INITIAL_TRACKS: MusicTrack[] = [
   },
   { 
     id: 't6', 
-    title: '溪語情書2', 
+    title: '溪語情書 2', 
     artist: '靈魂很輕，世界很遠，而你就在懷裡。', 
     category: '明亮', 
     url: `${BASE}溪語情書2.mp3`, 
@@ -98,7 +98,7 @@ export const INITIAL_TRACKS: MusicTrack[] = [
   },
   {
     id: 't13',
-    title: '月光1',
+    title: '月光 1',
     artist: '妳是萬物夢境裡永不乾枯的泉源。',
     category: '放鬆',
     url: `${BASE}月光1.mp3`,
@@ -106,7 +106,7 @@ export const INITIAL_TRACKS: MusicTrack[] = [
   },
   {
     id: 't14',
-    title: '月光3',
+    title: '月光 3',
     artist: '月色正溫柔地收攏世間所有的匆匆。',
     category: '溫暖',
     url: `${BASE}月光3.mp3`,
