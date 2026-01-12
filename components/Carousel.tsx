@@ -24,7 +24,6 @@ export const Carousel: React.FC<CarouselProps> = ({ images }) => {
 
     container.addEventListener('scroll', handleScroll, { passive: true });
     
-    // Auto scroll every 10 seconds for a slow-burn feel
     const timer = setInterval(() => {
       if (!container) return;
       const nextIndex = (activeIndex + 1) % images.length;
@@ -38,11 +37,14 @@ export const Carousel: React.FC<CarouselProps> = ({ images }) => {
     };
   }, [images, activeIndex]);
 
-  if (!images || images.length === 0) return null;
+  if (!images || images.length === 0) return (
+    <div className="pt-32 pb-16 flex items-center justify-center text-white/20 uppercase tracking-widest text-xs">
+      Loading visual assets...
+    </div>
+  );
 
   return (
     <section className="relative pt-32 pb-16 overflow-hidden bg-[#000000]">
-      {/* Background Decor Text */}
       <div className="absolute top-32 left-1/2 -translate-x-1/2 pointer-events-none opacity-[0.03] select-none whitespace-nowrap">
         <span className="text-[18vw] font-serif font-black tracking-[-0.05em] uppercase leading-none block">
           Visual Symphony
@@ -56,19 +58,22 @@ export const Carousel: React.FC<CarouselProps> = ({ images }) => {
         {images.slice(0, 6).map((image, idx) => (
           <div
             key={image.id}
-            className="flex-none w-[85vw] md:w-[580px] aspect-[4/5] relative rounded-[4px] overflow-hidden snap-center group border border-white/[0.08] bg-neutral-950 transition-all duration-1000 shadow-2xl"
+            className="flex-none w-[85vw] md:w-[580px] aspect-[4/5] relative rounded-[4px] overflow-hidden snap-center group border border-white/[0.08] bg-neutral-900 transition-all duration-1000 shadow-2xl"
           >
-            {/* Image Layer with deeper zoom */}
-            <div className="absolute inset-0 overflow-hidden">
+            <div className="absolute inset-0 overflow-hidden bg-neutral-900">
               <img
                 src={image.url}
                 alt={image.title}
-                className="w-full h-full object-cover transition-all duration-[4s] ease-out scale-105 group-hover:scale-110 opacity-60 group-hover:opacity-100"
+                onError={(e) => {
+                  console.error(`Image load failed: ${image.url}`);
+                  e.currentTarget.style.display = 'none';
+                }}
+                className="w-full h-full object-cover transition-all duration-[4s] ease-out scale-105 group-hover:scale-110 opacity-80 group-hover:opacity-100"
               />
-              <div className="absolute inset-0 bg-gradient-to-b from-black/20 via-transparent to-black/95 opacity-90 group-hover:opacity-40 transition-opacity duration-1000" />
+              {/* 減輕漸變層的遮蓋感，讓圖片更明顯 */}
+              <div className="absolute inset-0 bg-gradient-to-b from-black/10 via-transparent to-black/80 opacity-60 group-hover:opacity-30 transition-opacity duration-1000" />
             </div>
 
-            {/* Content overlay */}
             <div className="absolute inset-0 p-10 md:p-14 flex flex-col justify-end z-20">
               <div className="mb-4 overflow-hidden">
                  <span className="inline-block text-[10px] tracking-[0.5em] text-amber-500/80 uppercase font-light mb-2 translate-y-full group-hover:translate-y-0 transition-transform duration-700">
@@ -89,7 +94,6 @@ export const Carousel: React.FC<CarouselProps> = ({ images }) => {
         ))}
       </div>
 
-      {/* Modern Progress Indicator */}
       <div className="mt-12 max-w-[1400px] mx-auto px-10 flex flex-col items-center gap-6">
         <div className="flex gap-4 items-center">
           {images.slice(0, 6).map((_, i) => (

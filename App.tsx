@@ -18,12 +18,10 @@ interface ErrorBoundaryState {
 }
 
 class ErrorBoundary extends React.Component<ErrorBoundaryProps, ErrorBoundaryState> {
-  state: ErrorBoundaryState = { hasError: false };
-  props: ErrorBoundaryProps;
-
+  // Fix: Explicitly defining the constructor and calling super(props) ensures 'this.props' is correctly typed and recognized by the TypeScript compiler.
   constructor(props: ErrorBoundaryProps) {
     super(props);
-    this.props = props;
+    this.state = { hasError: false };
   }
 
   static getDerivedStateFromError(_error: any): ErrorBoundaryState {
@@ -39,7 +37,7 @@ class ErrorBoundary extends React.Component<ErrorBoundaryProps, ErrorBoundarySta
             onClick={() => { localStorage.clear(); window.location.reload(); }} 
             className="px-8 py-3 bg-white text-black rounded-full font-bold uppercase tracking-widest text-xs"
           >
-            重置並恢復
+            重置系統並重試
           </button>
         </div>
       );
@@ -54,23 +52,26 @@ function App() {
   const [isAdminOpen, setIsAdminOpen] = useState(false);
   const [isMusicPlaying, setIsMusicPlaying] = useState(false);
 
-  // 使用 v21 版本號強制刷新，確保讀取正確的 GitHub 檔案名稱
-  const VERSION_KEY = 'chen_music_v21_final';
+  // 再次更新金鑰名稱，徹底清除舊緩存
+  const VERSION_KEY = 'chen_music_v22_fix_paths';
 
   useEffect(() => {
     try {
       const savedImages = localStorage.getItem(`${VERSION_KEY}_images`);
       const savedTracks = localStorage.getItem(`${VERSION_KEY}_tracks`);
       
-      // 只有當 saved 資料存在且不是空陣列時才覆蓋初始值
       if (savedImages) {
         const parsed = JSON.parse(savedImages);
-        if (parsed && parsed.length > 0) setImages(parsed);
+        if (parsed && Array.isArray(parsed) && parsed.length > 0) {
+           setImages(parsed);
+        }
       }
       
       if (savedTracks) {
         const parsed = JSON.parse(savedTracks);
-        if (parsed && parsed.length > 0) setTracks(parsed);
+        if (parsed && Array.isArray(parsed) && parsed.length > 0) {
+           setTracks(parsed);
+        }
       }
     } catch (e) {
       console.error("LocalStorage load error:", e);
