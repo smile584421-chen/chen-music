@@ -3,6 +3,7 @@ import { MusicTrack, CarouselImage } from './types';
 
 export const GITHUB_RAW_BASE = 'https://raw.githubusercontent.com/smile584421-chen/chen-music/main/';
 
+// 輪播圖配置 (根據使用者需求對接圖片)
 export const INITIAL_CAROUSEL: CarouselImage[] = [
   { id: 'img_stone', url: `${GITHUB_RAW_BASE}chen-p6.jpg`, title: '風與石系列', subtitle: 'Wind & Stone Series' },
   { id: 'img_melody', url: `${GITHUB_RAW_BASE}chen-p5.jpg`, title: '在旋律中與自己相遇', subtitle: 'Meeting Yourself in Melody' },
@@ -14,11 +15,12 @@ export const INITIAL_CAROUSEL: CarouselImage[] = [
 
 export const CATEGORIES = ['禎心推薦', '冥想', '溫暖', '明亮', '放鬆'];
 
+// 音樂軌道配置 (根據使用者需求對接音樂與封面)
 export const INITIAL_TRACKS: MusicTrack[] = [
   { 
     id: 't1', 
     title: '風與石系列4 放手-1', 
-    artist: '最終你成了抓不住的遠方，\nIn the end, you became an unattainable distance,', 
+    artist: '最終你成了抓不住的遠方，\nIn the end, you became an unattainable distance.', 
     category: '禎心推薦', 
     url: `${GITHUB_RAW_BASE}chen-m8.mp3`, 
     coverUrl: `${GITHUB_RAW_BASE}chen-p6.jpg` 
@@ -26,7 +28,7 @@ export const INITIAL_TRACKS: MusicTrack[] = [
   { 
     id: 't2', 
     title: '風與石系列2 遠行', 
-    artist: '我不曾離去，而你正要遠行\nI have never left, but you are about to embark on a long journey.', 
+    artist: '我不曾離去，而你正要遠行。\nI have never left, but you are about to embark on a long journey.', 
     category: '放鬆', 
     url: `${GITHUB_RAW_BASE}chen-m7.mp3`, 
     coverUrl: `${GITHUB_RAW_BASE}chen-p6.jpg` 
@@ -34,7 +36,7 @@ export const INITIAL_TRACKS: MusicTrack[] = [
   { 
     id: 't3', 
     title: '在旋律中與自己相遇4', 
-    artist: '光影交織，溫暖如昨\nAmidst the interplay of light and shadow, the warmth remains unchanged.', 
+    artist: '光影交織，溫暖如昨。\nAmidst the interplay of light and shadow, the warmth remains unchanged.', 
     category: '冥想', 
     url: `${GITHUB_RAW_BASE}chen-m4.mp3`, 
     coverUrl: `${GITHUB_RAW_BASE}chen-p5.jpg` 
@@ -42,71 +44,71 @@ export const INITIAL_TRACKS: MusicTrack[] = [
   { 
     id: 't4', 
     title: '在旋律中與自己相遇3', 
-    artist: '心安了，便是一生瀟灑\nPeace of mind is the key to a carefree life.', 
+    artist: '心安了，便是一生瀟灑。\nPeace of mind is the key to a carefree life.', 
     category: '溫暖', 
     url: `${GITHUB_RAW_BASE}chen-m3.mp3`, 
     coverUrl: `${GITHUB_RAW_BASE}chen-p5.jpg` 
   },
   { 
     id: 't5', 
-    title: '溫暖療癒系1', 
-    artist: '所有的流浪，都是為了此刻的停泊。\nAll wandering is for the sake of finding a place to anchor in this moment.', 
-    category: '放鬆', 
-    url: `${GITHUB_RAW_BASE}chen-m11.mp3`, 
-    coverUrl: `${GITHUB_RAW_BASE}chen-p4.jpg` 
-  },
-  { 
-    id: 't7', 
-    title: '溫暖療癒系5', 
-    artist: '在音符裡安放所有憂傷\nLet all the sorrow turn into musical notes.', 
-    category: '冥想', 
-    url: `${GITHUB_RAW_BASE}chen-m12.mp3`, 
-    coverUrl: `${GITHUB_RAW_BASE}chen-p4.jpg` 
-  },
-  { 
-    id: 't8', 
     title: '風地與水協奏1', 
-    artist: '像風掠過水，滋潤大地\nLike the wind sweeping across the water, nourishing the earth.', 
+    artist: '像風掠過水，滋潤大地。\nLike the wind sweeping across the water, nourishing the earth.', 
     category: '溫暖', 
     url: `${GITHUB_RAW_BASE}chen-m5.mp3`, 
     coverUrl: `${GITHUB_RAW_BASE}chen-p3.jpg` 
   },
   { 
-    id: 't9', 
+    id: 't6', 
     title: '風地與水協奏3', 
-    artist: '當旋律蔓延成最好的相遇\nAs the melody spreads, you will encounter the most beautiful things.', 
+    artist: '當旋律蔓延成最好的相遇。\nAs the melody spreads, it becomes the most beautiful encounter.', 
     category: '明亮', 
     url: `${GITHUB_RAW_BASE}chen-m6.mp3`, 
     coverUrl: `${GITHUB_RAW_BASE}chen-p3.jpg` 
   },
   { 
-    id: 't10', 
+    id: 't7', 
     title: '溪語情書5', 
-    artist: '順著蜿蜒的旋律而行，前方便是為你點亮的燈火\nFollow the winding melody, ahead lies the light.', 
+    artist: '順著旋律，前方是為你點亮的燈火。\nFollow the melody, ahead lies the light lit for you.', 
     category: '放鬆', 
     url: `${GITHUB_RAW_BASE}chen-m10.mp3`, 
     coverUrl: `${GITHUB_RAW_BASE}chen-p2.jpg` 
   },
   { 
-    id: 't6', 
+    id: 't8', 
     title: '溪語情書2', 
-    artist: '靈魂很輕，世界很遠，而你就在自己懷裡。\nThe soul is light, the world is far, you are in your own embrace.', 
+    artist: '靈魂很輕，而你就在自己懷裡。\nThe soul is light, and you are in your own embrace.', 
     category: '明亮', 
     url: `${GITHUB_RAW_BASE}chen-m9.mp3`, 
     coverUrl: `${GITHUB_RAW_BASE}chen-p2.jpg` 
   },
+  { 
+    id: 't9', 
+    title: '溫暖療癒系1', 
+    artist: '所有的流浪，都是為了此刻的停泊。\nAll wandering is for the sake of finding an anchor.', 
+    category: '放鬆', 
+    url: `${GITHUB_RAW_BASE}chen-m11.mp3`, 
+    coverUrl: `${GITHUB_RAW_BASE}chen-p4.jpg` 
+  },
+  { 
+    id: 't10', 
+    title: '溫暖療癒系5', 
+    artist: '在音符裡安放所有憂傷。\nPlace all your sorrows within the musical notes.', 
+    category: '冥想', 
+    url: `${GITHUB_RAW_BASE}chen-m12.mp3`, 
+    coverUrl: `${GITHUB_RAW_BASE}chen-p4.jpg` 
+  },
   {
-    id: 't13',
+    id: 't11',
     title: '月光1',
-    artist: '在萬物乾渴的夢境裡，妳是永不乾枯的泉源\nIn a thirsty dream, you are an inexhaustible spring.',
+    artist: '在萬物乾渴的夢境裡，妳是泉源。\nIn a thirsty dream, you are the spring.',
     category: '放鬆',
     url: `${GITHUB_RAW_BASE}chen-m1.mp3`,
     coverUrl: `${GITHUB_RAW_BASE}chen-p1.jpg`
   },
   {
-    id: 't14',
+    id: 't12',
     title: '月光3',
-    artist: '月色正溫柔地收攏，世間所有的顛沛與匆匆\nThe moonlight gently embraces the hustle of the world.',
+    artist: '月色正溫柔地收攏世間的匆匆。\nThe moonlight gently embraces the hustle of the world.',
     category: '溫暖',
     url: `${GITHUB_RAW_BASE}chen-m2.mp3`,
     coverUrl: `${GITHUB_RAW_BASE}chen-p1.jpg`
