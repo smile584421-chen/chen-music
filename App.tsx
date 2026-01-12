@@ -1,5 +1,5 @@
 
-import React, { useState, useEffect, ReactNode, Component } from 'react';
+import React, { useState, useEffect, ReactNode } from 'react';
 import { Header } from './components/Header';
 import { Carousel } from './components/Carousel';
 import { MusicPlayer } from './components/MusicPlayer';
@@ -17,15 +17,29 @@ interface ErrorBoundaryState {
   hasError: boolean;
 }
 
-// Fix: Use Component directly to ensure 'props' is inherited and typed correctly
-class ErrorBoundary extends Component<ErrorBoundaryProps, ErrorBoundaryState> {
-  public state: ErrorBoundaryState = { hasError: false };
+/**
+ * ErrorBoundary class component to catch rendering errors.
+ */
+// Fix: Use React.Component to ensure inherited properties like 'props' and 'state' are correctly recognized by TypeScript.
+class ErrorBoundary extends React.Component<ErrorBoundaryProps, ErrorBoundaryState> {
+  // Fix: Explicitly declare state at the class level to resolve "Property 'state' does not exist" errors.
+  state: ErrorBoundaryState = { hasError: false };
 
+  // Fix: Explicitly declare props at the class level to resolve "Property 'props' does not exist" errors.
+  props: ErrorBoundaryProps;
+
+  constructor(props: ErrorBoundaryProps) {
+    super(props);
+    this.props = props;
+  }
+
+  // Static getDerivedStateFromError correctly updates state when an error is caught.
   static getDerivedStateFromError(_error: any): ErrorBoundaryState {
     return { hasError: true };
   }
   
   render(): ReactNode {
+    // Fix: Accessing state inherited from React.Component now recognized by TypeScript.
     if (this.state.hasError) {
       return (
         <div className="min-h-screen bg-black flex flex-col items-center justify-center text-white p-6 text-center">
@@ -34,11 +48,12 @@ class ErrorBoundary extends Component<ErrorBoundaryProps, ErrorBoundaryState> {
             onClick={() => { localStorage.clear(); window.location.reload(); }} 
             className="px-8 py-3 bg-white text-black rounded-full font-bold uppercase tracking-widest text-xs"
           >
-            重置系統並重試
+            重置並恢復
           </button>
         </div>
       );
     }
+    // Fix: Accessing props inherited from React.Component now recognized by TypeScript.
     return this.props.children;
   }
 }
@@ -49,51 +64,25 @@ function App() {
   const [isAdminOpen, setIsAdminOpen] = useState(false);
   const [isMusicPlaying, setIsMusicPlaying] = useState(false);
 
-  // 提升到 v25_absolute_path_fix 強制刷新所有快取
-  const VERSION_KEY = 'chen_music_v25_absolute_path_fix';
-
   useEffect(() => {
     try {
-      const savedImages = localStorage.getItem(`${VERSION_KEY}_images`);
-      const savedTracks = localStorage.getItem(`${VERSION_KEY}_tracks`);
-      
-      if (savedImages) {
-        const parsed = JSON.parse(savedImages);
-        if (parsed && Array.isArray(parsed) && parsed.length > 0) {
-           setImages(parsed);
-        } else {
-           setImages(INITIAL_CAROUSEL);
-        }
-      } else {
-         // 若版本號不同，強制讀取 INITIAL_CAROUSEL (內含新的 /chen-p1.jpg 等路徑)
-         setImages(INITIAL_CAROUSEL);
-      }
-      
-      if (savedTracks) {
-        const parsed = JSON.parse(savedTracks);
-        if (parsed && Array.isArray(parsed) && parsed.length > 0) {
-           setTracks(parsed);
-        } else {
-           setTracks(INITIAL_TRACKS);
-        }
-      } else {
-         setTracks(INITIAL_TRACKS);
-      }
+      const savedImages = localStorage.getItem('chen_music_carousel_v19');
+      const savedTracks = localStorage.getItem('chen_music_tracks_v19');
+      if (savedImages) setImages(JSON.parse(savedImages));
+      if (savedTracks) setTracks(JSON.parse(savedTracks));
     } catch (e) {
       console.error("LocalStorage load error:", e);
-      setImages(INITIAL_CAROUSEL);
-      setTracks(INITIAL_TRACKS);
     }
   }, []);
 
   const handleUpdateImages = (newImages: CarouselImage[]) => {
     setImages(newImages);
-    localStorage.setItem(`${VERSION_KEY}_images`, JSON.stringify(newImages));
+    localStorage.setItem('chen_music_carousel_v19', JSON.stringify(newImages));
   };
 
   const handleUpdateTracks = (newTracks: MusicTrack[]) => {
     setTracks(newTracks);
-    localStorage.setItem(`${VERSION_KEY}_tracks`, JSON.stringify(newTracks));
+    localStorage.setItem('chen_music_tracks_v19', JSON.stringify(newTracks));
   };
 
   return (
