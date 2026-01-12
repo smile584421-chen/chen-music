@@ -1,6 +1,7 @@
 
 import React from 'react';
 import { Settings, Volume2, VolumeX } from 'lucide-react';
+import { GITHUB_RAW_BASE } from '../constants';
 
 interface HeaderProps {
   onAdminClick: () => void;
@@ -11,17 +12,17 @@ interface HeaderProps {
 
 export const Header: React.FC<HeaderProps> = ({ onAdminClick, isAdmin, isMusicPlaying, onToggleMusic }) => {
   return (
-    <header className="fixed top-0 left-0 right-0 z-50 bg-[#050505]/40 backdrop-blur-xl">
-      <div className="max-w-[1400px] mx-auto px-8 md:px-12 h-24 flex items-center justify-between">
-        <div className="flex flex-col group cursor-default">
-          <div className="flex items-baseline gap-2">
-            <span className="text-xl md:text-2xl font-serif font-light text-gold-enhanced tracking-[0.4em] uppercase">
-              禎真
-            </span>
-            <span className="text-xs md:text-sm font-extralight tracking-[0.2em] text-white/20 lowercase italic">
-              music
-            </span>
-          </div>
+    <header className="fixed top-0 left-0 right-0 z-50 bg-[#050505]/40 backdrop-blur-xl transition-all duration-500">
+      <div className="max-w-[1400px] mx-auto px-8 md:px-12 h-32 md:h-40 flex items-center justify-between transition-all duration-500">
+        <div 
+          className="flex items-center cursor-pointer hover:opacity-80 transition-opacity"
+          onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
+        >
+          <img 
+            src={`${GITHUB_RAW_BASE}chen-logo1.png`} 
+            alt="禎真音樂" 
+            className="h-24 md:h-32 w-auto object-contain drop-shadow-[0_0_15px_rgba(0,0,0,0.5)]"
+          />
         </div>
 
         <div className="flex items-center gap-8 md:gap-12">

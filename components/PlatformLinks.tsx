@@ -14,7 +14,7 @@ export const PlatformLinks: React.FC = () => {
            </div>
         </div>
       ),
-      url: 'https://player.soundon.fm/p/5c071ed8-ffae-4c89-8d34-ff56b44f73c4'
+      url: 'https://player.soundon.fm/p/aabf6b6c-93f0-4c87-b8c8-3a48a0a6af69'
     },
     {
       name: 'Spotify',
@@ -26,7 +26,7 @@ export const PlatformLinks: React.FC = () => {
           </svg>
         </div>
       ),
-      url: '#'
+      url: 'https://open.spotify.com/show/5TSuIFrT0qTBHLCC5sn4jQ?si=S1g9KHQnQsW4PfL4RCcemQ'
     }
   ];
 

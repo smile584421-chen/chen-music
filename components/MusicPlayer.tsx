@@ -47,72 +47,82 @@ export const MusicPlayer: React.FC<MusicPlayerProps> = ({ tracks, externalContro
   };
 
   return (
-    <div id="music-section" className="px-6 py-24 max-w-[1200px] mx-auto bg-[#000000]">
+    <div id="music-section" className="px-6 py-12 max-w-[1200px] mx-auto bg-[#050505]">
       
-      <div className="flex flex-col items-center text-center mb-20 animate-fade-up">
-        <h2 className="text-[10px] tracking-[0.8em] uppercase text-amber-500/50 mb-8 font-light">Auditory Journey</h2>
-        <p className="text-[14px] md:text-[16px] text-neutral-300 font-serif font-light tracking-[0.15em] max-w-2xl leading-[2.6] italic">
+      {/* 縮減引言間距 */}
+      <div className="flex flex-col items-center text-center mb-12 animate-fade-up">
+        <p className="text-[13px] md:text-[15px] text-neutral-400 font-serif font-light tracking-widest max-w-2xl leading-[2.4] italic">
+          當世界偶爾變得吵雜...<br/>
           願流動的音符，能帶給你一點安定的力量。<br/>
           此刻，請閉上眼睛，讓心跟著節奏慢下來。
         </p>
-        <div className="mt-12 w-12 h-[1px] bg-white/10" />
+        <div className="mt-6 opacity-30">
+          <p className="text-[9px] tracking-[0.2em] uppercase leading-relaxed font-sans">
+            When the world occasionally becomes noisy… may music bring you peace.<br/>
+            At this moment, please close your eyes and let your heartbeat slow down.
+          </p>
+        </div>
+        <div className="mt-10 w-8 h-[1px] bg-white/10" />
       </div>
 
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-x-16 gap-y-6">
+      {/* 歌曲清單 - 增強播放按鈕顯著度 */}
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-x-12 gap-y-4">
         {displayTracks.map((track, idx) => (
           <button 
             key={track.id} 
             onClick={() => handleTrackSelect(idx)}
-            className={`flex items-center justify-between py-8 px-6 border-b transition-all duration-700 group text-left ${
+            className={`flex items-center justify-between py-6 px-4 border-b transition-all duration-700 group text-left rounded-lg ${
               currentTrackIndex === idx 
-                ? 'border-amber-500/40 bg-white/[0.03]' 
-                : 'border-white/[0.05] hover:border-white/10 hover:bg-white/[0.01]'
+                ? 'border-amber-500/30 bg-white/[0.02]' 
+                : 'border-white/[0.03] hover:border-white/10 hover:bg-white/[0.01]'
             }`}
           >
-            <div className="flex items-start gap-6">
-              <span className="text-[9px] font-mono text-neutral-800 group-hover:text-amber-500/40 transition-colors mt-1.5">
+            <div className="flex items-start gap-5">
+              <span className="text-[9px] font-mono text-neutral-700 group-hover:text-amber-500 transition-colors mt-1.5">
                 {String(idx + 1).padStart(2, '0')}
               </span>
               <div className="flex flex-col">
-                 <span className={`text-[14px] md:text-[15px] font-serif font-light tracking-[0.1em] mb-2 transition-colors ${currentTrackIndex === idx ? 'text-white' : 'text-neutral-400 group-hover:text-neutral-200'}`}>
+                 <span className={`text-[13px] md:text-[14px] font-serif font-light tracking-widest mb-2 transition-colors ${currentTrackIndex === idx ? 'text-white' : 'text-neutral-400 group-hover:text-neutral-200'}`}>
                    {track.title}
                  </span>
-                 <span className={`text-[10px] md:text-[11px] leading-relaxed tracking-widest font-light text-neutral-600 group-hover:text-neutral-500 transition-all duration-700`}>
+                 <span className={`text-[10px] md:text-[11px] leading-relaxed tracking-wider font-light whitespace-pre-line transition-all duration-700 ${currentTrackIndex === idx ? 'text-neutral-400' : 'text-neutral-600 group-hover:text-neutral-500'}`}>
                    {track.artist}
                  </span>
               </div>
             </div>
             
-            <div className={`flex-shrink-0 w-12 h-12 rounded-full border flex items-center justify-center transition-all duration-500 ${
+            {/* 增強後的播放按鈕 */}
+            <div className={`flex-shrink-0 w-10 h-10 rounded-full border flex items-center justify-center transition-all duration-500 ${
               currentTrackIndex === idx 
-                ? 'bg-amber-500 border-amber-500 text-black' 
-                : 'border-white/5 text-neutral-700 group-hover:border-white/20 group-hover:text-white'
+                ? 'bg-amber-500 border-amber-500 text-black shadow-[0_0_15px_rgba(245,158,11,0.3)]' 
+                : 'border-white/10 text-neutral-400 group-hover:border-white/30 group-hover:text-white'
             }`}>
               {currentTrackIndex === idx && isPlaying ? (
-                <Pause size={14} fill="currentColor" />
+                <Pause size={16} fill="currentColor" strokeWidth={1.5} />
               ) : (
-                <Play size={14} fill={currentTrackIndex === idx ? "currentColor" : "none"} className={currentTrackIndex === idx ? "" : "ml-0.5"} />
+                <Play size={16} fill={currentTrackIndex === idx ? "currentColor" : "none"} className={currentTrackIndex === idx ? "" : "ml-0.5"} strokeWidth={1.5} />
               )}
             </div>
           </button>
         ))}
       </div>
 
+      {/* 底部懸浮播放器 */}
       {currentTrack && (
-        <div className="fixed bottom-10 left-1/2 -translate-x-1/2 w-[90%] max-w-sm z-[100] bg-[#080808]/90 backdrop-blur-3xl border border-white/10 rounded-2xl p-3 flex items-center gap-4 shadow-2xl animate-fade-up">
+        <div className="fixed bottom-8 left-1/2 -translate-x-1/2 w-[90%] max-w-md z-[100] bg-[#0c0c0c]/80 backdrop-blur-2xl border border-white/5 rounded-full p-2 flex items-center gap-4 shadow-[0_20px_50px_rgba(0,0,0,0.5)] animate-fade-up">
           <audio ref={audioRef} src={currentTrack.url} onEnded={() => setCurrentTrackIndex((currentTrackIndex! + 1) % displayTracks.length)} />
-          <div className="relative shrink-0 overflow-hidden rounded-lg">
-            <img src={currentTrack.coverUrl} className={`w-12 h-12 object-cover grayscale transition-all duration-[3s] ${isPlaying ? 'scale-110' : 'opacity-40'}`} />
+          <div className="relative shrink-0">
+            <img src={currentTrack.coverUrl} className={`w-10 h-10 rounded-full object-cover grayscale transition-all duration-1000 ${isPlaying ? 'animate-[spin_12s_linear_infinite]' : 'opacity-40'}`} />
           </div>
           <div className="flex-grow overflow-hidden">
-            <p className="text-white text-[12px] font-serif font-light truncate tracking-wider">{currentTrack.title}</p>
-            <p className="text-amber-500/60 text-[8px] tracking-[0.3em] uppercase font-light mt-1">Resonating</p>
+            <p className="text-white text-[11px] font-serif font-light truncate tracking-widest">{currentTrack.title}</p>
+            <p className="text-neutral-600 text-[7px] tracking-[0.2em] uppercase font-light">Now Resonating</p>
           </div>
           <button 
             onClick={() => setIsPlaying(!isPlaying)}
-            className="w-10 h-10 bg-white/5 hover:bg-white/10 text-white rounded-full flex items-center justify-center transition-all shrink-0"
+            className="w-10 h-10 bg-white/5 hover:bg-white/10 text-white rounded-full flex items-center justify-center transition-all shrink-0 border border-white/5"
           >
-            {isPlaying ? <Pause size={14} /> : <Play size={14} className="ml-0.5" />}
+            {isPlaying ? <Pause size={14} strokeWidth={1.5} /> : <Play size={14} strokeWidth={1.5} className="ml-0.5" />}
           </button>
         </div>
       )}
